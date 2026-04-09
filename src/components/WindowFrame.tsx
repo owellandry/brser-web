@@ -1,4 +1,4 @@
-import { Minus, Square, X } from 'lucide-react'
+import { MdClose, MdRemove, MdCropSquare } from 'react-icons/md'
 import { Rnd } from 'react-rnd'
 import { BrowserApp } from '../apps/BrowserApp'
 import { FileExplorerApp } from '../apps/FileExplorerApp'
@@ -43,39 +43,39 @@ export function WindowFrame({ windowState, singleWindowMode }: WindowFrameProps)
 
   const content = (
     <div
-      className={`window-frame ${windowState.isFocused ? 'is-focused' : ''} ${singleWindowMode ? 'is-mobile' : ''}`}
+      className={`neo-window ${windowState.isFocused ? 'is-focused' : ''} ${singleWindowMode ? 'is-mobile' : ''}`}
     >
-      <header className="win-window-header">
-        <div className="win-window-title-group" onDoubleClick={() => toggleMaximizeWindow(windowState.id)}>
+      <header className="neo-window-header" onDoubleClick={() => toggleMaximizeWindow(windowState.id)}>
+        <div className="neo-window-title">
           <Icon size={16} color={app.accent} />
-          <p className="win-window-title">{windowState.title}</p>
+          <span>{windowState.title}</span>
         </div>
-        <div className="win-window-controls">
+        <div className="neo-window-controls">
           <button
-            className="win-control minimize"
+            className="neo-control"
             aria-label="Minimize window"
-            onClick={() => minimizeWindow(windowState.id)}
+            onClick={(e) => { e.stopPropagation(); minimizeWindow(windowState.id); }}
           >
-            <Minus size={16} />
+            <MdRemove size={16} />
           </button>
           <button
-            className="win-control maximize"
+            className="neo-control"
             aria-label="Toggle window size"
-            onClick={() => toggleMaximizeWindow(windowState.id)}
+            onClick={(e) => { e.stopPropagation(); toggleMaximizeWindow(windowState.id); }}
           >
-            <Square size={14} />
+            <MdCropSquare size={14} />
           </button>
           <button
-            className="win-control close"
+            className="neo-control close"
             aria-label="Close window"
-            onClick={() => closeWindow(windowState.id)}
+            onClick={(e) => { e.stopPropagation(); closeWindow(windowState.id); }}
           >
-            <X size={16} />
+            <MdClose size={16} />
           </button>
         </div>
       </header>
 
-      <div className="window-content">{renderApp(windowState)}</div>
+      <div className="neo-window-content">{renderApp(windowState)}</div>
     </div>
   )
 

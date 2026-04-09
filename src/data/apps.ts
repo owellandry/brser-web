@@ -1,12 +1,11 @@
 import {
-  VscFolder,
-  VscTerminal,
-  VscEdit,
-  VscSettingsGear,
-  VscCompassActive,
-  VscLayoutCentered
-} from 'react-icons/vsc'
-import { FaEdge } from 'react-icons/fa'
+  MdFolder,
+  MdEditDocument,
+  MdSettings,
+  MdDashboard,
+  MdWidgets
+} from 'react-icons/md'
+import { FaTerminal, FaGlobe } from 'react-icons/fa'
 import type { AppDefinition, AppId, WindowPayload } from '../types'
 import { basename } from '../utils/path'
 
@@ -18,58 +17,58 @@ export const defaultPreferences = {
 export const appRegistry: Record<AppId, AppDefinition> = {
   explorer: {
     id: 'explorer',
-    name: 'File Explorer',
+    name: 'Files',
     description: 'Navigate the virtual filesystem and launch documents.',
-    icon: VscFolder,
+    icon: MdFolder,
     allowMultiple: true,
     defaultSize: { width: 760, height: 520 },
     minSize: { width: 480, height: 320 },
     permissions: ['filesystem'],
-    accent: '#facc15', // Yellow folder color
+    accent: '#00e5ff',
   },
   terminal: {
     id: 'terminal',
-    name: 'Command Prompt',
+    name: 'Console',
     description: 'Command-driven access to the sandbox kernel and files.',
-    icon: VscTerminal,
+    icon: FaTerminal,
     allowMultiple: true,
     defaultSize: { width: 720, height: 460 },
     minSize: { width: 420, height: 320 },
     permissions: ['filesystem'],
-    accent: '#1e1e1e', // Black/dark grey
+    accent: '#b026ff',
   },
   notes: {
     id: 'notes',
-    name: 'Notepad',
+    name: 'Notes',
     description: 'A fast markdown-friendly editor with autosave.',
-    icon: VscEdit,
+    icon: MdEditDocument,
     allowMultiple: true,
     defaultSize: { width: 700, height: 520 },
     minSize: { width: 420, height: 320 },
     permissions: ['filesystem'],
-    accent: '#38bdf8', // Light blue
+    accent: '#ff0055',
   },
   browser: {
     id: 'browser',
-    name: 'Microsoft Edge',
+    name: 'Web',
     description: 'Internal docs and embeddable destinations.',
-    icon: FaEdge,
+    icon: FaGlobe,
     allowMultiple: true,
     defaultSize: { width: 760, height: 560 },
     minSize: { width: 460, height: 360 },
     permissions: ['embed'],
-    accent: '#0ea5e9', // Edge blue
+    accent: '#ffaa00',
   },
   settings: {
     id: 'settings',
     name: 'Settings',
     description: 'Themes, wallpapers, install state and reset controls.',
-    icon: VscSettingsGear,
+    icon: MdSettings,
     allowMultiple: false,
     defaultSize: { width: 680, height: 520 },
     minSize: { width: 440, height: 320 },
     permissions: ['settings'],
-    accent: '#64748b', // Grey
+    accent: '#aaaaaa',
   },
 }
 
@@ -83,14 +82,14 @@ export const desktopAppIds: AppId[] = [
 
 export const spotlightCards = [
   {
-    title: 'Rust/WASM kernel',
-    copy: 'Path resolution and command parsing stay inside the sandbox boundary.',
-    icon: VscCompassActive,
+    title: 'Core Kernel',
+    copy: 'Local isolation with web assembly.',
+    icon: MdDashboard,
   },
   {
-    title: 'Local-first workspace',
-    copy: 'Desktop layout, notes and files persist inside IndexedDB.',
-    icon: VscLayoutCentered,
+    title: 'Persistent State',
+    copy: 'Your layout and files are saved.',
+    icon: MdWidgets,
   },
 ]
 
@@ -98,14 +97,14 @@ export function deriveWindowTitle(appId: AppId, payload: WindowPayload) {
   switch (appId) {
     case 'explorer':
       return payload.currentPath && payload.currentPath !== '/'
-        ? `File Explorer - ${basename(String(payload.currentPath))}`
-        : 'File Explorer'
+        ? `Files - ${basename(String(payload.currentPath))}`
+        : 'Files'
     case 'terminal':
-      return payload.cwd ? `Command Prompt - ${String(payload.cwd)}` : 'Command Prompt'
+      return payload.cwd ? `Console - ${String(payload.cwd)}` : 'Console'
     case 'notes':
-      return payload.path ? `Notepad - ${basename(String(payload.path))}` : 'Notepad'
+      return payload.path ? `Notes - ${basename(String(payload.path))}` : 'Notes'
     case 'browser':
-      return payload.location ? `Microsoft Edge - ${String(payload.location)}` : 'Microsoft Edge'
+      return payload.location ? `Web - ${String(payload.location)}` : 'Web'
     case 'settings':
       return 'Settings'
     default:

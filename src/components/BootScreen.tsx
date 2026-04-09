@@ -1,4 +1,4 @@
-import { FaWindows } from 'react-icons/fa'
+import { MdHexagon } from 'react-icons/md'
 
 interface BootScreenProps {
   message: string
@@ -6,18 +6,15 @@ interface BootScreenProps {
 
 export function BootScreen({ message }: BootScreenProps) {
   return (
-    <div className="win-boot-screen">
-      <div className="win-boot-logo">
-        <FaWindows size={100} color="#0078D7" />
+    <div className="neo-boot-screen">
+      <div className="neo-boot-logo">
+        <MdHexagon size={120} className="pulse-icon" />
       </div>
-      <div className="win-boot-spinner">
-        <div className="dot"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
+      <h1 className="neo-boot-title">NEXUS OS</h1>
+      <div className="neo-boot-progress">
+        <div className="neo-boot-bar"></div>
       </div>
-      <p className="win-boot-copy">{message}</p>
+      <p className="neo-boot-copy">{message}</p>
     </div>
   )
 }
