@@ -66,7 +66,7 @@ export function DesktopShell() {
                 onClick={() => openApp(appId, payload)}
               >
                 <span className="desktop-shortcut-badge">
-                  <Icon size={24} />
+                  <Icon size={40} color={app.accent || '#fff'} />
                 </span>
                 <span className="desktop-shortcut-label">{app.name}</span>
               </button>

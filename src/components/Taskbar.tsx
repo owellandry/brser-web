@@ -1,15 +1,16 @@
-import { MonitorCog, Power, Rocket, Wifi } from 'lucide-react'
-import { appRegistry } from '../data/apps'
+import { Apple, Battery, Search, Wifi } from 'lucide-react'
+import { appRegistry, desktopAppIds } from '../data/apps'
 import { useOSStore } from '../store/osStore'
 import { useEffect, useState } from 'react'
 
 function ClockChip() {
   const [now, setNow] = useState(() =>
     new Intl.DateTimeFormat(undefined, {
-      hour: '2-digit',
-      minute: '2-digit',
+      weekday: 'short',
       month: 'short',
       day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
     }).format(new Date()),
   )
 
@@ -17,10 +18,11 @@ function ClockChip() {
     const interval = window.setInterval(() => {
       setNow(
         new Intl.DateTimeFormat(undefined, {
-          hour: '2-digit',
-          minute: '2-digit',
+          weekday: 'short',
           month: 'short',
           day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
         }).format(new Date()),
       )
     }, 1000 * 30)
@@ -28,12 +30,7 @@ function ClockChip() {
     return () => window.clearInterval(interval)
   }, [])
 
-  return (
-    <span className="status-chip">
-      <Wifi size={16} />
-      {now}
-    </span>
-  )
+  return <span className="menubar-clock">{now}</span>
 }
 
 export function Taskbar() {
@@ -42,59 +39,98 @@ export function Taskbar() {
   const toggleLauncher = useOSStore((state) => state.toggleLauncher)
   const focusWindow = useOSStore((state) => state.focusWindow)
   const minimizeWindow = useOSStore((state) => state.minimizeWindow)
-  const pwaReady = useOSStore((state) => state.pwaReady)
   const openApp = useOSStore((state) => state.openApp)
 
-  return (
-    <footer className="taskbar">
-      <button className="taskbar-brand" onClick={toggleLauncher}>
-        <Rocket size={20} />
-        <span>{launcherOpen ? 'Close launcher' : 'Open launcher'}</span>
-      </button>
+  const activeWindow = windows
+    .filter((w) => w.status !== 'minimized')
+    .sort((a, b) => a.zIndex - b.zIndex)
+    .pop()
 
-      <div className="taskbar-window-strip">
-        {windows
-          .slice()
-          .sort((left, right) => left.zIndex - right.zIndex)
-          .map((window) => {
-            const app = appRegistry[window.appId]
+  const activeAppName = activeWindow
+    ? appRegistry[activeWindow.appId].name
+    : 'Finder'
+
+  // Dock items: pinned apps + open unpinned apps
+  const dockApps = desktopAppIds.map((id) => ({
+    id,
+    app: appRegistry[id],
+    isOpen: windows.some((w) => w.appId === id),
+    isFocused: activeWindow?.appId === id,
+  }))
+
+  return (
+    <>
+      <header className="menubar">
+        <div className="menubar-left">
+          <button className="menubar-apple" onClick={toggleLauncher}>
+            <Apple size={16} />
+          </button>
+          <span className="menubar-active-app">{activeAppName}</span>
+          <span className="menubar-item hide-mobile">File</span>
+          <span className="menubar-item hide-mobile">Edit</span>
+          <span className="menubar-item hide-mobile">View</span>
+          <span className="menubar-item hide-mobile">Go</span>
+          <span className="menubar-item hide-mobile">Window</span>
+          <span className="menubar-item hide-mobile">Help</span>
+        </div>
+
+        <div className="menubar-right">
+          <button className="menubar-icon" onClick={() => toggleLauncher()}>
+            <Search size={16} />
+          </button>
+          <span className="menubar-icon">
+            <Wifi size={16} />
+          </span>
+          <span className="menubar-icon">
+            <Battery size={16} />
+          </span>
+          <ClockChip />
+        </div>
+      </header>
+
+      <footer className="dock-container">
+        <div className="dock">
+          {dockApps.map(({ id, app, isOpen, isFocused }) => {
             const Icon = app.icon
             return (
               <button
-                key={window.id}
-                className={`taskbar-window ${window.isFocused ? 'is-focused' : ''}`}
+                key={id}
+                className={`dock-item ${isOpen ? 'is-open' : ''} ${isFocused ? 'is-focused' : ''}`}
                 onClick={() => {
-                  if (window.status === 'minimized') {
-                    focusWindow(window.id)
-                    return
+                  const win = windows.find((w) => w.appId === id)
+                  if (win) {
+                    if (win.status === 'minimized') {
+                      focusWindow(win.id)
+                    } else if (win.isFocused) {
+                      minimizeWindow(win.id)
+                    } else {
+                      focusWindow(win.id)
+                    }
+                  } else {
+                    const payload =
+                      id === 'explorer'
+                        ? { currentPath: '/Home' }
+                        : id === 'terminal'
+                          ? { cwd: '/Home' }
+                          : id === 'notes'
+                            ? { path: '/Home/Notes/Field Notes.md' }
+                            : id === 'browser'
+                              ? { location: 'app://docs' }
+                              : {}
+                    openApp(id, payload)
                   }
-
-                  if (window.isFocused) {
-                    minimizeWindow(window.id)
-                    return
-                  }
-
-                  focusWindow(window.id)
                 }}
               >
-                <Icon size={16} />
-                <span>{window.title}</span>
+                <div className="dock-icon-wrapper" style={{ '--app-color': app.accent } as React.CSSProperties}>
+                  <Icon size={28} color="#fff" />
+                </div>
+                {isOpen && <span className="dock-indicator" />}
+                <span className="dock-tooltip">{app.name}</span>
               </button>
             )
           })}
-      </div>
-
-      <div className="taskbar-side">
-        <button className="status-chip" onClick={() => openApp('settings')}>
-          <MonitorCog size={16} />
-          {pwaReady ? 'Offline ready' : 'Shell live'}
-        </button>
-        <ClockChip />
-        <button className="status-chip" onClick={() => openApp('settings')}>
-          <Power size={16} />
-          Preferences
-        </button>
-      </div>
-    </footer>
+        </div>
+      </footer>
+    </>
   )
 }

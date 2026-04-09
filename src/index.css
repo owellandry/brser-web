@@ -1,31 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
 :root {
-  --font-sans: 'Space Grotesk', 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
-  --text-primary: #eff6fb;
-  --text-secondary: rgba(239, 246, 251, 0.72);
-  --text-muted: rgba(222, 234, 242, 0.54);
-  --surface-1: rgba(6, 19, 29, 0.84);
-  --surface-2: rgba(11, 29, 43, 0.78);
-  --surface-3: rgba(20, 46, 64, 0.72);
-  --border-soft: rgba(184, 219, 255, 0.15);
-  --border-strong: rgba(186, 226, 255, 0.24);
-  --accent: #7dd3fc;
-  --accent-strong: #38bdf8;
-  --accent-alt: #fb923c;
-  --shadow-ambient: 0 30px 80px rgba(0, 0, 0, 0.35);
-  --shadow-window: 0 18px 40px rgba(3, 10, 16, 0.42);
-  --desktop-gradient:
-    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.25), transparent 30%),
-    radial-gradient(circle at 80% 18%, rgba(251, 146, 60, 0.2), transparent 28%),
-    radial-gradient(circle at 65% 75%, rgba(14, 165, 233, 0.14), transparent 30%),
-    linear-gradient(140deg, #04131d 0%, #0b2232 48%, #071118 100%);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", "Cascadia Code", monospace;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --surface-1: rgba(30, 30, 30, 0.7);
+  --surface-2: rgba(40, 40, 40, 0.65);
+  --surface-3: rgba(50, 50, 50, 0.6);
+  --border-soft: rgba(255, 255, 255, 0.15);
+  --border-strong: rgba(255, 255, 255, 0.3);
+  --accent: #007aff;
+  --accent-strong: #0a84ff;
+  --accent-alt: #ff9500;
+  --shadow-ambient: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-window: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  --desktop-gradient: 
+    radial-gradient(circle at 80% 20%, #d83f87 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, #4a2b8e 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #201a4a 0%, #0d0a1d 100%);
   font-family: var(--font-sans);
   line-height: 1.5;
   font-weight: 400;
   color: var(--text-primary);
-  background: #04131d;
+  background: #0d0a1d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -99,17 +96,17 @@ a {
 }
 
 .os-shell[data-wallpaper='dunes'] {
-  --desktop-gradient:
-    radial-gradient(circle at 18% 20%, rgba(251, 146, 60, 0.28), transparent 30%),
-    radial-gradient(circle at 78% 15%, rgba(250, 204, 21, 0.18), transparent 30%),
-    linear-gradient(160deg, #1a0f08 0%, #522d1d 45%, #111315 100%);
+  --desktop-gradient: 
+    radial-gradient(circle at 20% 30%, #ff5e3a 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, #ff2a68 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #1e1e1e 0%, #000000 100%);
 }
 
 .os-shell[data-wallpaper='grid'] {
-  --desktop-gradient:
-    radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.22), transparent 34%),
-    radial-gradient(circle at 80% 12%, rgba(125, 211, 252, 0.16), transparent 32%),
-    linear-gradient(150deg, #041009 0%, #0b2f25 46%, #06131d 100%);
+  --desktop-gradient: 
+    radial-gradient(circle at 70% 30%, #00d2ff 0%, transparent 50%),
+    radial-gradient(circle at 30% 70%, #3a7bd5 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #112031 0%, #0d1117 100%);
 }
 
 .boot-screen {
@@ -117,66 +114,53 @@ a {
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 32px;
-  background:
-    radial-gradient(circle at 50% 20%, rgba(125, 211, 252, 0.16), transparent 30%),
-    linear-gradient(160deg, #04131d 0%, #091b29 60%, #02070b 100%);
+  background: #000;
+  color: white;
+  z-index: 1000;
 }
 
 .boot-card {
-  width: min(520px, 100%);
-  padding: 28px;
-  border: 1px solid var(--border-soft);
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(11, 29, 43, 0.92), rgba(6, 19, 29, 0.72));
-  box-shadow: var(--shadow-ambient);
-  backdrop-filter: blur(22px);
-}
-
-.boot-kicker {
-  margin: 0 0 8px;
-  font-size: 0.82rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.boot-title {
-  margin: 0;
-  font-size: clamp(2.4rem, 4vw, 3.5rem);
-  line-height: 0.92;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .boot-copy {
-  margin: 16px 0 22px;
-  color: var(--text-secondary);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .boot-progress {
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  width: 200px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
 
 .boot-progress span {
   display: block;
   height: 100%;
-  width: 42%;
+  width: 30%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--accent-strong), var(--accent-alt));
-  animation: boot-progress 1.8s ease-in-out infinite;
+  background: white;
+  animation: boot-progress 2s ease-in-out infinite;
 }
 
 @keyframes boot-progress {
   0% {
-    transform: translateX(-115%);
+    transform: translateX(-100%);
   }
-  55% {
-    transform: translateX(120%);
+  50% {
+    transform: translateX(330%);
   }
   100% {
-    transform: translateX(120%);
+    transform: translateX(-100%);
   }
 }
 
@@ -189,32 +173,28 @@ a {
 
 .desktop-shortcuts {
   position: absolute;
-  top: 28px;
-  left: 28px;
+  top: 40px;
+  right: 20px;
   z-index: 1;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  width: 132px;
+  width: 80px;
 }
 
 .desktop-shortcut {
-  display: grid;
-  gap: 8px;
-  justify-items: center;
-  padding: 10px;
-  border: 1px solid transparent;
-  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
   color: var(--text-primary);
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
+  transition: background 100ms;
 }
 
 .desktop-shortcut:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-soft);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .desktop-shortcut-badge {
@@ -222,15 +202,19 @@ a {
   place-items: center;
   width: 56px;
   height: 56px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(125, 211, 252, 0.2), rgba(125, 211, 252, 0.06));
-  border: 1px solid rgba(125, 211, 252, 0.22);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: transparent;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
 .desktop-shortcut-label {
-  font-size: 0.82rem;
+  font-size: 11px;
   text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  padding: 2px 4px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 .window-stage {
@@ -243,80 +227,110 @@ a {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid var(--border-soft);
-  border-radius: 26px;
-  background: linear-gradient(180deg, rgba(8, 23, 35, 0.96), rgba(7, 18, 27, 0.76));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(30, 30, 30, 0.85);
   box-shadow: var(--shadow-window);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
 .window-frame.is-focused {
-  border-color: var(--border-strong);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .window-frame.is-mobile {
   position: absolute;
   inset: 0;
-  border-radius: 28px 28px 0 0;
+  border-radius: 12px 12px 0 0;
 }
 
 .window-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.window-header button {
-  cursor: pointer;
-}
-
-.window-app-badge {
   display: grid;
-  place-items: center;
-  width: 38px;
+  grid-template-columns: 80px 1fr 80px;
+  align-items: center;
   height: 38px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.window-title-group {
-  min-width: 0;
-}
-
-.window-title {
-  margin: 0;
-  font-size: 0.96rem;
-  font-weight: 700;
-}
-
-.window-subtitle {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.76rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
 
 .window-controls {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: auto;
+  padding-left: 14px;
 }
 
-.window-control {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  transition: background 160ms ease;
+.mac-control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.window-control:hover {
-  background: rgba(255, 255, 255, 0.14);
+.mac-control::after {
+  content: '';
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.window-controls:hover .mac-control::after {
+  opacity: 1;
+}
+
+.mac-control.close {
+  background-color: #ff5f56;
+}
+.mac-control.close::after {
+  width: 6px;
+  height: 6px;
+  background:
+    linear-gradient(45deg, transparent 40%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.6) 60%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.6) 60%, transparent 60%);
+}
+
+.mac-control.minimize {
+  background-color: #ffbd2e;
+}
+.mac-control.minimize::after {
+  width: 6px;
+  height: 2px;
+  background: rgba(0,0,0,0.6);
+}
+
+.mac-control.maximize {
+  background-color: #27c93f;
+}
+.mac-control.maximize::after {
+  width: 6px;
+  height: 6px;
+  background:
+    linear-gradient(135deg, rgba(0,0,0,0.6) 40%, transparent 40%),
+    linear-gradient(-45deg, rgba(0,0,0,0.6) 40%, transparent 40%);
+}
+
+.window-title-group {
+  text-align: center;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .window-content {
@@ -553,135 +567,216 @@ a {
   margin-bottom: 12px;
 }
 
-.taskbar {
+.menubar {
   position: absolute;
-  inset: auto 18px 18px;
-  z-index: 40;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 14px;
-  padding: 14px;
-  border-radius: 26px;
-  border: 1px solid var(--border-soft);
-  background: rgba(7, 18, 27, 0.72);
-  box-shadow: var(--shadow-window);
-  backdrop-filter: blur(24px);
-}
-
-.taskbar-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.taskbar-window-strip {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
-  gap: 10px;
-  min-width: 0;
-  overflow: auto;
-  scrollbar-width: none;
-}
-
-.taskbar-window-strip::-webkit-scrollbar {
-  display: none;
-}
-
-.taskbar-window {
-  display: inline-flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  min-width: 0;
-  padding: 10px 14px;
-  border-radius: 18px;
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.04);
+  padding: 0 12px;
+  z-index: 100;
+  font-size: 13px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
-.taskbar-window.is-focused {
-  border-color: rgba(125, 211, 252, 0.36);
-  background: rgba(56, 189, 248, 0.12);
-}
-
-.taskbar-side {
-  display: inline-flex;
+.menubar-left, .menubar-right {
+  display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  height: 100%;
 }
 
-.status-chip {
-  display: inline-flex;
+.menubar-item {
+  cursor: default;
+}
+
+.menubar-apple {
+  cursor: pointer;
+  display: flex;
   align-items: center;
+}
+
+.menubar-active-app {
+  font-weight: 700;
+}
+
+.menubar-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menubar-clock {
+  cursor: default;
+}
+
+.dock-container {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.dock {
+  display: flex;
+  align-items: flex-end;
   gap: 8px;
-  padding: 10px 14px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-secondary);
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  pointer-events: auto;
+}
+
+.dock-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), margin 0.2s;
+  transform-origin: bottom center;
+}
+
+.dock-item:hover {
+  transform: scale(1.3) translateY(-10px);
+  margin: 0 10px;
+  z-index: 10;
+}
+
+.dock-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--app-color, rgba(255,255,255,0.1));
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.3);
+  transition: box-shadow 0.2s;
+}
+
+.dock-item:hover .dock-icon-wrapper {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.4);
+}
+
+.dock-indicator {
+  position: absolute;
+  bottom: -6px;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.dock-tooltip {
+  position: absolute;
+  top: -36px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.dock-item:hover .dock-tooltip {
+  opacity: 1;
 }
 
 .launcher-panel {
   position: absolute;
-  left: 18px;
-  bottom: 106px;
-  z-index: 50;
-  width: min(360px, calc(100vw - 36px));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  width: min(600px, calc(100vw - 40px));
   display: grid;
   gap: 18px;
-  padding: 20px;
-  border-radius: 28px;
-  border: 1px solid var(--border-soft);
-  background: rgba(5, 16, 25, 0.84);
-  box-shadow: var(--shadow-ambient);
-  backdrop-filter: blur(24px);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(30, 30, 30, 0.6);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
 .launcher-header h2 {
   margin: 0;
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .launcher-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 10px;
 }
 
 .launcher-app {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   align-items: center;
   padding: 14px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  background: transparent;
   border: 1px solid transparent;
-  text-align: left;
+  text-align: center;
+  transition: background 0.1s;
 }
 
 .launcher-app:hover {
-  border-color: var(--border-strong);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .launcher-app-badge {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .launcher-app-copy strong {
   display: block;
+  font-size: 13px;
 }
 
 .launcher-app-copy span {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.82rem;
+  display: none; /* Hide descriptions in launchpad */
+}
+
+.launcher-app svg:last-child {
+  display: none; /* Hide the arrow */
 }
 
 .empty-state {
@@ -717,19 +812,21 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .taskbar {
-    inset: auto 10px 10px;
-    grid-template-columns: 1fr;
+  .dock-container {
+    bottom: 10px;
   }
 
-  .taskbar-brand {
-    justify-content: center;
+  .dock {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .hide-mobile {
+    display: none;
   }
 
   .launcher-panel {
-    right: 10px;
-    left: 10px;
-    bottom: 116px;
-    width: auto;
+    width: 90vw;
+    padding: 20px;
   }
 }
