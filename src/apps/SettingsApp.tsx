@@ -6,25 +6,25 @@ const wallpaperCards = [
     id: 'orbital',
     name: 'Orbital',
     swatch:
-      'radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.8), transparent 36%), linear-gradient(160deg, #04131d, #0b2232 46%, #071118)',
+      'linear-gradient(180deg, #e7f0fb, #dce8f4 48%, #d2dde8)',
   },
   {
     id: 'dunes',
     name: 'Dunes',
     swatch:
-      'radial-gradient(circle at 16% 22%, rgba(251, 146, 60, 0.85), transparent 34%), linear-gradient(160deg, #1a0f08, #522d1d 48%, #111315)',
+      'linear-gradient(180deg, #efe6dc, #e4d8cb 48%, #d8ccbf)',
   },
   {
     id: 'grid',
     name: 'Grid',
     swatch:
-      'radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.7), transparent 34%), linear-gradient(160deg, #041009, #0b2f25 48%, #06131d)',
+      'linear-gradient(180deg, #e4eef7, #d6e3ef 48%, #cad8e4)',
   },
 ] as const
 
 const themeCards = [
-  { id: 'aurora', name: 'Aurora', copy: 'Cool blue highlights and glass surfaces.' },
-  { id: 'ember', name: 'Ember', copy: 'Warm accent lighting and dusk-inspired contrast.' },
+  { id: 'aurora', name: 'Aurora', copy: 'Blue system accent with a cleaner Windows-like shell.' },
+  { id: 'ember', name: 'Ember', copy: 'Warmer system accent while keeping the same structured UI.' },
 ] as const
 
 export function SettingsApp() {

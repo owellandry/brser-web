@@ -14,6 +14,7 @@ import { MdWifi, MdNotifications, MdVolumeUp, MdSearch, MdApps } from 'react-ico
 import { appRegistry, desktopAppIds } from '../data/apps'
 import { useOSStore } from '../store/osStore'
 import { useEffect, useState } from 'react'
+import type { AppId } from '../types'
 
 /**
  * COMPONENTE: ClockChip
@@ -80,7 +81,7 @@ export function Taskbar() {
   }))
 
   // Manejador de eventos para abrir/enfocar una app desde el Dock
-  const handleAppClick = (id: string) => {
+  const handleAppClick = (id: AppId) => {
     const win = windows.find((w) => w.appId === id)
     if (win) {
       if (win.status === 'minimized') focusWindow(win.id)

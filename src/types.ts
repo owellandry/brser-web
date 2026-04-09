@@ -1,4 +1,4 @@
-import type { LucideIcon } from 'lucide-react'
+import type { IconType } from 'react-icons'
 
 export type AppId = 'explorer' | 'terminal' | 'notes' | 'settings' | 'browser'
 
@@ -33,7 +33,7 @@ export interface AppDefinition {
   id: AppId
   name: string
   description: string
-  icon: LucideIcon
+  icon: IconType
   allowMultiple: boolean
   defaultSize: Pick<Bounds, 'width' | 'height'>
   minSize: Pick<Bounds, 'width' | 'height'>

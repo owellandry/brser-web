@@ -41,7 +41,7 @@ export const appRegistry: Record<AppId, AppDefinition> = {
     defaultSize: { width: 760, height: 520 },
     minSize: { width: 480, height: 320 },
     permissions: ['filesystem'],
-    accent: '#00e5ff',
+    accent: '#f2c94c',
   },
   terminal: {
     id: 'terminal',
@@ -52,7 +52,7 @@ export const appRegistry: Record<AppId, AppDefinition> = {
     defaultSize: { width: 720, height: 460 },
     minSize: { width: 420, height: 320 },
     permissions: ['filesystem'],
-    accent: '#b026ff',
+    accent: '#4aa3df',
   },
   notes: {
     id: 'notes',
@@ -63,7 +63,7 @@ export const appRegistry: Record<AppId, AppDefinition> = {
     defaultSize: { width: 700, height: 520 },
     minSize: { width: 420, height: 320 },
     permissions: ['filesystem'],
-    accent: '#ff0055',
+    accent: '#3d8bd6',
   },
   browser: {
     id: 'browser',
@@ -74,7 +74,7 @@ export const appRegistry: Record<AppId, AppDefinition> = {
     defaultSize: { width: 760, height: 560 },
     minSize: { width: 460, height: 360 },
     permissions: ['embed'],
-    accent: '#ffaa00',
+    accent: '#0078d4',
   },
   settings: {
     id: 'settings',
@@ -85,7 +85,7 @@ export const appRegistry: Record<AppId, AppDefinition> = {
     defaultSize: { width: 680, height: 520 },
     minSize: { width: 440, height: 320 },
     permissions: ['settings'],
-    accent: '#aaaaaa',
+    accent: '#9aa4b2',
   },
 }
 

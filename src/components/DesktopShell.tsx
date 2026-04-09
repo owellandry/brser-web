@@ -72,6 +72,7 @@ export function DesktopShell() {
     <main 
       className="os-shell" 
       data-wallpaper={preferences.wallpaper}
+      data-theme={preferences.theme}
       role="application"
     >
       <div className="desktop-area">

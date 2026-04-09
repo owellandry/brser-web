@@ -11,6 +11,7 @@
 import { MdPerson, MdFolder, MdSettings, MdPowerSettingsNew } from 'react-icons/md'
 import { appRegistry, desktopAppIds } from '../data/apps'
 import { useOSStore } from '../store/osStore'
+import type { AppId } from '../types'
 
 /**
  * COMPONENTE: LauncherPanel
@@ -25,7 +26,7 @@ export function LauncherPanel() {
    * Manejador de lanzamiento: Envía la petición a la capa de Dominio/Store
    * @param appId Identificador de la aplicación a abrir
    */
-  const handleLaunch = (appId: string) => {
+  const handleLaunch = (appId: AppId) => {
     // Definimos el payload de arranque por defecto para cada app (Ports)
     const payload =
       appId === 'explorer' ? { currentPath: '/Home' }
