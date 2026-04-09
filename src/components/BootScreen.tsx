@@ -25,7 +25,7 @@ export function BootScreen({ message }: BootScreenProps) {
       <div className="neo-boot-logo">
         <MdHexagon size={120} className="pulse-icon" />
       </div>
-      <h1 className="neo-boot-title">NEXUS OS</h1>
+      <h1 className="neo-boot-title">Zenit</h1>
       <div className="neo-boot-progress">
         <div className="neo-boot-bar" />
       </div>

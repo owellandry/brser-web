@@ -558,10 +558,41 @@ a {
   border: 0;
 }
 
+.browser-toolbar-shell {
+  display: grid;
+  gap: 10px;
+}
+
+.browser-toolbar {
+  padding: 10px 12px;
+}
+
+.browser-address-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  flex: 1;
+  min-width: min(420px, 100%);
+}
+
+.browser-meta-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .browser-doc {
   padding: 24px;
   display: grid;
   gap: 18px;
+}
+
+.browser-eyebrow {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .browser-doc h2,
@@ -582,6 +613,20 @@ a {
   height: 100%;
   padding: 24px;
   text-align: center;
+}
+
+.browser-fallback-card {
+  display: grid;
+  gap: 14px;
+  max-width: 560px;
+  justify-items: center;
+}
+
+.browser-action-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .settings-grid {
@@ -973,5 +1018,10 @@ a {
     flex-direction: column;
     gap: 14px;
     align-items: flex-start;
+  }
+
+  .browser-address-form {
+    grid-template-columns: 1fr;
+    min-width: 0;
   }
 }

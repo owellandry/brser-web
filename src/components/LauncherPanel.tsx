@@ -48,7 +48,7 @@ export function LauncherPanel() {
         
         {/* Cabecera con título y buscador */}
         <div className="neo-launcher-header">
-          <h2>NEXUS Apps</h2>
+          <h2>Zenit Apps</h2>
           <div className="neo-launcher-search">
             <input type="text" placeholder="Search system..." autoFocus aria-label="Search apps" />
           </div>

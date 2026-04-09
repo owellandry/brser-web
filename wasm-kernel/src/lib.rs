@@ -13,7 +13,7 @@ struct ParsedCommand {
 
 #[wasm_bindgen]
 pub fn init_kernel() -> String {
-    "brser-kernel-0.1".to_string()
+    "zenit-kernel-0.1".to_string()
 }
 
 #[wasm_bindgen]

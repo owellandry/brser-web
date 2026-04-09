@@ -13,8 +13,16 @@ export interface Bounds {
   height: number
 }
 
+export type WindowPayloadValue =
+  | string
+  | number
+  | boolean
+  | null
+  | WindowPayloadValue[]
+  | { [key: string]: WindowPayloadValue }
+
 export interface WindowPayload {
-  [key: string]: string | number | boolean | null | undefined
+  [key: string]: WindowPayloadValue | undefined
 }
 
 export interface WindowState {

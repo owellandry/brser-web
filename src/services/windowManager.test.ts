@@ -6,7 +6,8 @@ describe('window manager helpers', () => {
     const explorer = createWindowRecord('explorer', { currentPath: '/Home' }, [])
     const terminal = createWindowRecord('terminal', { cwd: '/Home' }, [explorer])
 
-    expect(explorer.title).toContain('Explorer')
+    expect(explorer.title).toBe('Files - Home')
+    expect(terminal.title).toBe('Console - /Home')
     expect(terminal.bounds.x).toBeGreaterThan(explorer.bounds.x)
   })
 

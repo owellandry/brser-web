@@ -41,7 +41,7 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
     {
       id: crypto.randomUUID(),
       kind: 'system',
-      content: 'NEXUS OS kernel online. Type `help` to list available commands.',
+      content: 'Zenit kernel online. Type `help` to list available commands.',
     },
   ])
   

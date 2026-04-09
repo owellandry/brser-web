@@ -6,7 +6,7 @@ class BrserVirtualOSDatabase extends Dexie {
   kv!: Table<KeyValueEntry, string>
 
   constructor() {
-    super('brser-virtual-os')
+    super('zenit-virtual-os')
 
     this.version(1).stores({
       files: '&path, parentPath, kind, updatedAt',

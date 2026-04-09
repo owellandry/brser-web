@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'Brser Virtual OS',
-        short_name: 'BrserOS',
-        description: 'A cinematic browser-native operating system powered by React and Rust/WASM.',
+        name: 'Zenit',
+        short_name: 'Zenit',
+        description: 'A clean browser-native operating system powered by React and Rust/WASM.',
         theme_color: '#06131d',
         background_color: '#06131d',
         display: 'standalone',
