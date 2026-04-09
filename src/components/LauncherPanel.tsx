@@ -1,4 +1,5 @@
-import { VscAccount, VscFolder, VscSettingsGear, VscPower } from 'react-icons/vsc'
+import { VscAccount, VscFolder, VscSettingsGear } from 'react-icons/vsc'
+import { MdPowerSettingsNew } from 'react-icons/md'
 import { appRegistry, desktopAppIds, spotlightCards } from '../data/apps'
 import { useOSStore } from '../store/osStore'
 
@@ -37,7 +38,7 @@ export function LauncherPanel() {
           <span className="win-rail-tooltip">Settings</span>
         </button>
         <button className="win-rail-item">
-          <VscPower size={20} />
+          <MdPowerSettingsNew size={20} />
           <span className="win-rail-tooltip">Power</span>
         </button>
       </div>
