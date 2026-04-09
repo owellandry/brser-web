@@ -1,6 +1,6 @@
 import {
   VscFolder,
-  VscTerminalCmd,
+  VscTerminal,
   VscEdit,
   VscSettingsGear,
   VscCompassActive,
@@ -31,7 +31,7 @@ export const appRegistry: Record<AppId, AppDefinition> = {
     id: 'terminal',
     name: 'Command Prompt',
     description: 'Command-driven access to the sandbox kernel and files.',
-    icon: VscTerminalCmd,
+    icon: VscTerminal,
     allowMultiple: true,
     defaultSize: { width: 720, height: 460 },
     minSize: { width: 420, height: 320 },

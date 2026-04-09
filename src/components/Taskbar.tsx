@@ -1,5 +1,5 @@
-import { VscWifi, VscBell, VscChevronUp } from 'react-icons/vsc'
-import { FaWindows } from 'react-icons/fa'
+import { VscBell, VscChevronUp } from 'react-icons/vsc'
+import { FaWindows, FaWifi } from 'react-icons/fa'
 import { MdVolumeUp, MdSearch } from 'react-icons/md'
 import { appRegistry, desktopAppIds } from '../data/apps'
 import { useOSStore } from '../store/osStore'
@@ -129,7 +129,7 @@ export function Taskbar() {
           <VscChevronUp size={16} />
         </button>
         <button className="win-tray-icon">
-          <VscWifi size={16} />
+          <FaWifi size={14} />
         </button>
         <button className="win-tray-icon">
           <MdVolumeUp size={18} />
