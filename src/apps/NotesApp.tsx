@@ -1,5 +1,14 @@
+/**
+ * ============================================================================
+ * ARCHIVO: NotesApp.tsx
+ * PROPÓSITO: Editor de texto (Notas) de NEXUS OS
+ * ARQUITECTURA: Hexagonal - Capa de Aplicación (Caso de Uso) / UI
+ * ============================================================================
+ * Permite leer, editar y auto-guardar archivos de texto.
+ */
+
 import { useEffect, useEffectEvent, useRef, useState } from 'react'
-import { Save } from 'lucide-react'
+import { MdSave } from 'react-icons/md'
 import { readTextFile, writeTextFile } from '../services/fs'
 import { useOSStore } from '../store/osStore'
 
@@ -11,12 +20,12 @@ export function NotesApp({ windowId }: NotesAppProps) {
   const windowState = useOSStore((state) => state.windows.find((window) => window.id === windowId))
   const updateWindowPayload = useOSStore((state) => state.updateWindowPayload)
   const markFsDirty = useOSStore((state) => state.markFsDirty)
+  
   const [content, setContent] = useState('')
   const [status, setStatus] = useState('Loading…')
   const isReadyRef = useRef(false)
 
-  const path =
-    windowState && typeof windowState.payload.path === 'string'
+  const path = windowState && typeof windowState.payload.path === 'string'
       ? windowState.payload.path
       : '/Home/Notes/Field Notes.md'
 
@@ -27,23 +36,17 @@ export function NotesApp({ windowId }: NotesAppProps) {
 
     void readTextFile(path)
       .then((nextContent) => {
-        if (!active) {
-          return
-        }
+        if (!active) return
         setContent(nextContent)
         setStatus('All changes saved')
         isReadyRef.current = true
       })
       .catch((error: unknown) => {
-        if (!active) {
-          return
-        }
+        if (!active) return
         setStatus(error instanceof Error ? error.message : 'Could not load note.')
       })
 
-    return () => {
-      active = false
-    }
+    return () => { active = false }
   }, [path, updateWindowPayload, windowId])
 
   const persistContent = useEffectEvent(async (nextContent: string) => {
@@ -53,20 +56,12 @@ export function NotesApp({ windowId }: NotesAppProps) {
   })
 
   useEffect(() => {
-    if (!isReadyRef.current) {
-      return
-    }
-
-    const timer = window.setTimeout(() => {
-      void persistContent(content)
-    }, 320)
-
+    if (!isReadyRef.current) return
+    const timer = window.setTimeout(() => void persistContent(content), 320)
     return () => window.clearTimeout(timer)
   }, [content])
 
-  if (!windowState) {
-    return null
-  }
+  if (!windowState) return null
 
   return (
     <section className="app-surface">
@@ -74,7 +69,7 @@ export function NotesApp({ windowId }: NotesAppProps) {
         <span className="status-chip mono">{path}</span>
         <span className="toolbar-spacer" />
         <span className="status-chip">
-          <Save size={16} />
+          <MdSave size={16} />
           {status}
         </span>
       </div>
