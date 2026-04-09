@@ -1,3 +1,13 @@
+/**
+ * ============================================================================
+ * ARCHIVO: apps.ts
+ * PROPÓSITO: Registro Central de Aplicaciones y Preferencias Base
+ * ARQUITECTURA: Hexagonal - Capa de Dominio (Entidades y Configuraciones)
+ * ============================================================================
+ * Define el listado oficial de aplicaciones disponibles en NEXUS OS,
+ * sus metadatos (iconos, permisos, colores) y opciones por defecto.
+ */
+
 import {
   MdFolder,
   MdEditDocument,
@@ -9,11 +19,18 @@ import { FaTerminal, FaGlobe } from 'react-icons/fa'
 import type { AppDefinition, AppId, WindowPayload } from '../types'
 import { basename } from '../utils/path'
 
+/**
+ * Configuraciones visuales por defecto del sistema
+ */
 export const defaultPreferences = {
   theme: 'aurora',
   wallpaper: 'orbital',
 } as const
 
+/**
+ * REGISTRO DE APLICACIONES (App Registry)
+ * Actúa como la fuente de verdad de todas las apps instaladas.
+ */
 export const appRegistry: Record<AppId, AppDefinition> = {
   explorer: {
     id: 'explorer',
@@ -72,6 +89,9 @@ export const appRegistry: Record<AppId, AppDefinition> = {
   },
 }
 
+/** 
+ * IDs de las aplicaciones que se muestran en el escritorio por defecto 
+ */
 export const desktopAppIds: AppId[] = [
   'explorer',
   'terminal',
@@ -80,6 +100,9 @@ export const desktopAppIds: AppId[] = [
   'settings',
 ]
 
+/**
+ * Tarjetas de información ("Features" o "Spotlight") del Launcher
+ */
 export const spotlightCards = [
   {
     title: 'Core Kernel',
@@ -93,6 +116,12 @@ export const spotlightCards = [
   },
 ]
 
+/**
+ * Helper para derivar el título dinámico de la ventana
+ * @param appId ID de la aplicación
+ * @param payload Parámetros de la ventana activa
+ * @returns String con el título formateado
+ */
 export function deriveWindowTitle(appId: AppId, payload: WindowPayload) {
   switch (appId) {
     case 'explorer':
