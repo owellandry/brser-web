@@ -1,0 +1,53 @@
+{
+  "name": "brser-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "npm run wasm:build",
+    "dev": "vite",
+    "prebuild": "npm run wasm:build",
+    "build": "tsc -b && vite build",
+    "lint": "node scripts/run-eslint.mjs",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "wasm:build": "wasm-pack build wasm-kernel --target web --out-dir pkg",
+    "wasm:test": "cargo test --manifest-path wasm-kernel/Cargo.toml"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "dexie": "^4.4.2",
+    "lucide-react": "^1.7.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-rnd": "^10.5.3",
+    "workbox-window": "^7.4.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.59.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "@wasm-tool/wasm-pack-plugin": "^1.7.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "fake-indexeddb": "^6.2.5",
+    "globals": "^17.4.0",
+    "jsdom": "^29.0.2",
+    "playwright": "^1.59.1",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.1",
+    "vite": "^7.3.2",
+    "vite-plugin-pwa": "^1.2.0",
+    "vitest": "^4.1.3"
+  }
+}
