@@ -45,28 +45,34 @@ export function WindowFrame({ windowState, singleWindowMode }: WindowFrameProps)
     <div
       className={`window-frame ${windowState.isFocused ? 'is-focused' : ''} ${singleWindowMode ? 'is-mobile' : ''}`}
     >
-      <header className="window-header">
-        <div className="window-controls">
+      <header className="win-window-header">
+        <div className="win-window-title-group" onDoubleClick={() => toggleMaximizeWindow(windowState.id)}>
+          <Icon size={16} color={app.accent} />
+          <p className="win-window-title">{windowState.title}</p>
+        </div>
+        <div className="win-window-controls">
           <button
-            className="mac-control close"
-            aria-label="Close window"
-            onClick={() => closeWindow(windowState.id)}
-          />
-          <button
-            className="mac-control minimize"
+            className="win-control minimize"
             aria-label="Minimize window"
             onClick={() => minimizeWindow(windowState.id)}
-          />
+          >
+            <Minus size={16} />
+          </button>
           <button
-            className="mac-control maximize"
+            className="win-control maximize"
             aria-label="Toggle window size"
             onClick={() => toggleMaximizeWindow(windowState.id)}
-          />
+          >
+            <Square size={14} />
+          </button>
+          <button
+            className="win-control close"
+            aria-label="Close window"
+            onClick={() => closeWindow(windowState.id)}
+          >
+            <X size={16} />
+          </button>
         </div>
-        <div className="window-title-group">
-          <p className="window-title">{windowState.title}</p>
-        </div>
-        <div className="window-spacer"></div>
       </header>
 
       <div className="window-content">{renderApp(windowState)}</div>

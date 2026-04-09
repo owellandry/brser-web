@@ -1,4 +1,6 @@
-import { Apple, Battery, Search, Wifi } from 'lucide-react'
+import { VscWifi, VscBell, VscChevronUp } from 'react-icons/vsc'
+import { FaWindows } from 'react-icons/fa'
+import { MdVolumeUp, MdSearch } from 'react-icons/md'
 import { appRegistry, desktopAppIds } from '../data/apps'
 import { useOSStore } from '../store/osStore'
 import { useEffect, useState } from 'react'
@@ -6,31 +8,46 @@ import { useEffect, useState } from 'react'
 function ClockChip() {
   const [now, setNow] = useState(() =>
     new Intl.DateTimeFormat(undefined, {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
       hour: 'numeric',
       minute: '2-digit',
     }).format(new Date()),
   )
 
+  const [date, setDate] = useState(() =>
+    new Intl.DateTimeFormat(undefined, {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).format(new Date()),
+  )
+
   useEffect(() => {
     const interval = window.setInterval(() => {
+      const d = new Date()
       setNow(
         new Intl.DateTimeFormat(undefined, {
-          weekday: 'short',
-          month: 'short',
-          day: 'numeric',
           hour: 'numeric',
           minute: '2-digit',
-        }).format(new Date()),
+        }).format(d),
+      )
+      setDate(
+        new Intl.DateTimeFormat(undefined, {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        }).format(d),
       )
     }, 1000 * 30)
 
     return () => window.clearInterval(interval)
   }, [])
 
-  return <span className="menubar-clock">{now}</span>
+  return (
+    <div className="taskbar-clock">
+      <span>{now}</span>
+      <span>{date}</span>
+    </div>
+  )
 }
 
 export function Taskbar() {
@@ -46,10 +63,6 @@ export function Taskbar() {
     .sort((a, b) => a.zIndex - b.zIndex)
     .pop()
 
-  const activeAppName = activeWindow
-    ? appRegistry[activeWindow.appId].name
-    : 'Finder'
-
   // Dock items: pinned apps + open unpinned apps
   const dockApps = desktopAppIds.map((id) => ({
     id,
@@ -59,43 +72,26 @@ export function Taskbar() {
   }))
 
   return (
-    <>
-      <header className="menubar">
-        <div className="menubar-left">
-          <button className="menubar-apple" onClick={toggleLauncher}>
-            <Apple size={16} />
-          </button>
-          <span className="menubar-active-app">{activeAppName}</span>
-          <span className="menubar-item hide-mobile">File</span>
-          <span className="menubar-item hide-mobile">Edit</span>
-          <span className="menubar-item hide-mobile">View</span>
-          <span className="menubar-item hide-mobile">Go</span>
-          <span className="menubar-item hide-mobile">Window</span>
-          <span className="menubar-item hide-mobile">Help</span>
+    <footer className="win-taskbar">
+      <div className="win-taskbar-left">
+        <button 
+          className={`win-start-button ${launcherOpen ? 'is-open' : ''}`} 
+          onClick={toggleLauncher}
+        >
+          <FaWindows size={18} color={launcherOpen ? "#0078D7" : "white"} />
+        </button>
+        <div className="win-search-box" onClick={toggleLauncher}>
+          <MdSearch size={20} color="#888" />
+          <span>Type here to search</span>
         </div>
 
-        <div className="menubar-right">
-          <button className="menubar-icon" onClick={() => toggleLauncher()}>
-            <Search size={16} />
-          </button>
-          <span className="menubar-icon">
-            <Wifi size={16} />
-          </span>
-          <span className="menubar-icon">
-            <Battery size={16} />
-          </span>
-          <ClockChip />
-        </div>
-      </header>
-
-      <footer className="dock-container">
-        <div className="dock">
+        <div className="win-task-strip">
           {dockApps.map(({ id, app, isOpen, isFocused }) => {
             const Icon = app.icon
             return (
               <button
                 key={id}
-                className={`dock-item ${isOpen ? 'is-open' : ''} ${isFocused ? 'is-focused' : ''}`}
+                className={`win-task-item ${isOpen ? 'is-open' : ''} ${isFocused ? 'is-focused' : ''}`}
                 onClick={() => {
                   const win = windows.find((w) => w.appId === id)
                   if (win) {
@@ -121,16 +117,33 @@ export function Taskbar() {
                   }
                 }}
               >
-                <div className="dock-icon-wrapper" style={{ '--app-color': app.accent } as React.CSSProperties}>
-                  <Icon size={28} color="#fff" />
-                </div>
-                {isOpen && <span className="dock-indicator" />}
-                <span className="dock-tooltip">{app.name}</span>
+                <Icon size={22} color={app.accent} />
               </button>
             )
           })}
         </div>
-      </footer>
-    </>
+      </div>
+
+      <div className="win-taskbar-right">
+        <button className="win-tray-icon">
+          <VscChevronUp size={16} />
+        </button>
+        <button className="win-tray-icon">
+          <VscWifi size={16} />
+        </button>
+        <button className="win-tray-icon">
+          <MdVolumeUp size={18} />
+        </button>
+        <button className="win-tray-clock">
+          <ClockChip />
+        </button>
+        <button className="win-tray-icon">
+          <VscBell size={16} />
+        </button>
+        <div className="win-desktop-show" onClick={() => {
+          windows.forEach(w => minimizeWindow(w.id))
+        }} />
+      </div>
+    </footer>
   )
 }
